@@ -15,11 +15,7 @@ CORS(app, origins=[
 ])
 limiter = Limiter(get_remote_address, app=app)
 
-# DEBUG MODE
 stripe.api_key = env.get('STRIPE_API_KEY')
-
-# PRODUCTION MODE
-# stripe.api_key = env.get('STRIPE_API_KEY')
 
 v1 = Blueprint('v1', __name__, template_folder='templates')
 
