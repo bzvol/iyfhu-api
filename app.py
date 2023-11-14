@@ -4,7 +4,8 @@ from flask_limiter.util import get_remote_address
 from flask_cors import CORS
 from dotenv import dotenv_values
 # from os import environ as env
-import stripe
+import stripe_config
+import routes
 
 env = dotenv_values('.env')
 
@@ -15,13 +16,10 @@ CORS(app, origins=[
 ])
 limiter = Limiter(get_remote_address, app=app)
 
-stripe.api_key = env.get('STRIPE_API_KEY')
+stripe_config.init()
 
 v1 = Blueprint('v1', __name__, template_folder='templates')
-
-# noinspection PyUnresolvedReferences
-import routes
-
+routes.register_routes()
 app.register_blueprint(v1, url_prefix='/api/v1')
 
 if __name__ == '__main__':

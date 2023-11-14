@@ -7,5 +7,5 @@ __pycache__
 .pytest_cache
 
 venv
-johirmisszio-firebase-adminsdk.json
 .env
+stripe_test.py
